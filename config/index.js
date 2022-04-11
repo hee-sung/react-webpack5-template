@@ -26,7 +26,7 @@ module.exports = {
     /**
      * Source Maps
      */
-    devtool: 'eval-cheap-module-source-map',
+    devtool: 'inline-source-map',
     cacheBusting: true,
     cssSourceMap: true,
     extractCss: false

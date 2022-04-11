@@ -15,12 +15,12 @@ const isProd = !['LOCAL', 'DEV'].includes(process.env.NODE_ENV);
 const buildConfig = isProd ? config.build : config.dev;
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   // entry: {
   //   app: ['@babel/polyfill',
   //     'core-js/modules/es6.promise',
   //     'core-js/modules/es6.array.iterator',
-  //     './src/index.js']
+  //     './src/index.tsx']
   // },
   output: {
     filename: '[name].[contenthash].js',
@@ -40,6 +40,15 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader"
+          }
+        ]
       },
       {
         test: /\.css$/i,
@@ -76,6 +85,9 @@ module.exports = {
         }
       },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
   },
   optimization: {
     chunkIds: 'named'
